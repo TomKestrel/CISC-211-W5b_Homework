@@ -1,0 +1,66 @@
+; W5b_Homework_Challenges
+; by Wootark Kim
+
+; "What were your challenges in performing the lab (from design to the implementation phases)?"
+
+; For W5b homeworks, I had no trouble with task 1. I did had problems with task 2 but that was mainly because
+; I forgot how to calculate Fibonacci sequence numbers. In addition, I was at first accidentally trying to
+; code to figure out the total sum of the sequence before I realized I just had to find out the sequence number
+; itself. 
+
+; Task 3 gave me an enormous headache. Keeping track of every registers and their purpose at one go became convulated
+; real fast. Took me several hours to get what I wanted going but I definitely don't feel comfortable yet if I had to
+; do this assignment (or anything related to arrays in assembly language) again. I will say though, homeworks for this week
+; definitely made me feel more comfortable though on navigating and understanding what I see on the "layout asm" and 
+; "lay regs" panel when using gdb. 
+
+Flowchart (my general thought process from top to bottom):
+
+"The first task probably involves a inc and dec commands"
+	.
+	.
+	.
+started questioning myself "how does the assemble know which register to look at when using the 
+jnz jump command?"
+	.
+	.
+That's when I consulted google search and read more about "flags" and what they entailed 
+(in this case it was the flag ZF that was relevant to how jnz jump command functioned.
+	.
+	.
+For task 2: "man what was a Fibonacci sequence number again?"
+	.
+	.
+Oh that's right. Now how can I formulate it into a representation that assembler can understand?
+	.
+	.
+	(after trying and coding multiple attemps for an hour and a half)
+	.
+	.
+I think I got it figured out. Time to move onto the 3rd task
+	.
+	.
+I became very overwhelmed when learning about arrays and when attemping to loop through the elements
+	.	
+	.
+Could not keep track of all the relevant registers and their roles in m head
+	.	
+	.
+Brought out a paper and pencil to manually track the role of each registers
+	.	
+	.
+	(Attempt different codes for around somewhere between 2 and 3 hours)
+	.	
+	.
+I think I got it to work?
+	.
+	.
+	(check gdb and look around the relevant info on the "layout asm" and "layout regs" panel
+	.	
+	.
+I still do not fully understood the lecture material when it talked about "the memory address of
+the variable array in the code is the same as the memory address of the first element (0x804a000)," 
+but I did understood how to read what all the values each of the registers were storing.
+In addition, I know how to watch and follow a relevant variable. That's how I determined that the
+code "worked" since I was able to confirm that the [largest] variable contained the largest value 
+within a given array when checked with gdb.

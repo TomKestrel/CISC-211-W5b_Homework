@@ -1,0 +1,44 @@
+; W5b_Homework_Task_3
+; by Wootark Kim
+
+; Task 3: Define the array with length 4 and, type integer, find the largest element in the array.
+; Use gdb to debug the code and verify that the code is working well and as per the requirement.
+
+;note: confirmed that [largest] contained the largest value within a given array when checked with gdb
+ 
+section .text
+    global _start
+
+__start:
+    ; Initialize registers
+	mov eax, 4              ; length of array (number of elements)
+	mov ebx, array          ; point ebx to the start of the array
+	mov ecx, [ebx]          ; load the first element into ecx (assuming the first element is the largest initially)
+	mov edi, 4              ; initialize edi to the size of an element (4 bytes)
+	dec eax                 ; decrement eax as we have already considered the first element
+
+Find_biggest:
+	cmp eax, 0              ; check if we have processed all elements
+	je result               ; if eax is zero, we are done
+
+	add ebx, edi            ; move to the next element
+	mov edx, [ebx]          ; load the next element into edx
+
+	cmp edx, ecx            ; compare current element with the largest found so far
+	jle skip                ; if edx is less or equal to ecx, skip updating the largest element
+	mov ecx, edx            ; update ecx with the new largest element
+
+skip:
+	dec eax                 ; decrement the counter
+	jmp Find_biggest        ; repeat the loop
+
+result:
+	mov [largest], ecx      ; store the largest element found into the memory
+
+	; instructions for shutting down
+	mov eax, 1		;load eax with the system call number 1 (prepare to shut down)
+	int 0x80		;instruction to make the system call
+
+section .data
+	array dd 3,7,5,2
+	largest dd 0

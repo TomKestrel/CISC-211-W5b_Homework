@@ -1,0 +1,29 @@
+
+; W5b_Homework_Task_1
+; by Wootark Kim
+
+; Task 1: Generate a counter using an EBX register, debug, and explain your findings. 
+; Use the code written in the  counter (optimized version) example.
+
+; the section where my code that will be read begins
+section .text
+        global _start
+
+_start:
+        mov ebx,10  	;ebx is a counter register this time (instead of ecx)
+	mov eax, 0	;setting eax to 0
+
+label:
+        inc eax		;eax will keep increasing as long as ebx keeps looping decrementally
+        dec ebx		;will keep looping until ebx reaches 0
+	jnz label	;keep looping by jumping to the beginning of this code if ebx is not zero
+
+	; instructions for shutting down
+	mov eax, 1		;load eax with the system call number 1 (prepare to shut down)
+	int 0x80		;instruction to make the system call
+
+; Explaining my debug findings:
+; As I ran the assembler, I found that the eax register did visually go up while the ebx, acting as the counter, did go down.
+; I also noticed the ZF flag come up once hte ebx counter hit 0. From what I understand, when using the jnz label, the assembler will
+; automatically know which register is relevant. In this case it is ebx because "dec ebx" means it will eventually reach zero and the 
+; jnz will look for a ZF flag (which "dec ebx" will trigger once it hits zero).

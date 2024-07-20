@@ -1,0 +1,33 @@
+; W5b_Homework_Task_2
+; by Wootark Kim
+
+; Task 2: Calculate the final number of the first 10 Fibonacci numbers starting from 0. The result should be equal to 55
+; Answer confirmed with gdb: eax value displayed as 55 for the 10th Fibonacci number
+ 
+section .text
+    global _start
+
+_start:
+	; Initialize variables
+	mov eax, 0       	; F(0), the first initial value (as in Fibonacci number starting from 0)
+	mov ebx, 1       	; F(1), the 2nd initial value
+	mov ecx, 9       	; Counter set to 9 (which means 9 loops total)
+
+label:
+    	add eax, ebx      	; Compute the next Fibonacci number
+	mov edx, eax		; swapping eax and ebx since eax is now the new fibonacci number and ebx will be the previous number
+	mov [temporary], ebx	; (swapping in progress)
+	mov eax, [temporary]	; (swapping in progress)
+	mov ebx, edx		; (swapping in progress)
+    
+	loop label		; will repeat loop until ecx is 0
+
+	; instructions for shutting down
+	mov eax, 1		;load eax with the system call number 1 (prepare to shut down)
+	int 0x80		;instruction to make the system call
+    
+section .bss
+	temporary resb 1	;an uninitialized variable called temporary (to help with value swapping)
+
+
+
